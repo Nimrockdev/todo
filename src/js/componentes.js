@@ -7,6 +7,8 @@ const txtInput = document.querySelector('.new-todo');
 const btnBorrar = document.querySelector('.clear-completed');
 const ulFiltros = document.querySelector('.filters');
 const Filtro = document.querySelectorAll('.filtro');
+var prioridades = document.getElementsByName('prioridad');
+
 
 
 
@@ -38,8 +40,20 @@ txtInput.addEventListener('keyup', (event) => {
 
     if (event.keyCode === 13 && txtInput.value.length > 0) {
 
+
+        let prioridad;
+
+        for (var i = 0; i < prioridades.length; i++) {
+            if (prioridades[i].checked) {
+                prioridad = prioridades[i].value;
+            }
+        }
+
+
         console.log(txtInput.value);
-        const nuevoTodo = new Todo(txtInput.value);
+        console.log(prioridad)
+
+        const nuevoTodo = new Todo(txtInput.value, prioridad);
         todoList.nuevoTodo(nuevoTodo);
 
         console.log(todoList);

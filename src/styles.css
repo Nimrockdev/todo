@@ -20,6 +20,31 @@ button {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.buttonP {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px
+}
+
+.button1 {
+    background-color: green
+}
+
+.button2 {
+    background-color: blue
+}
+
+.button3 {
+    background-color: yellow
+}
+
 body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;

@@ -13,7 +13,17 @@
     <section class="todoapp">
         <header class="header">
             <h1>Tareas</h1>
-            <input class="new-todo" placeholder="¿Qué necesita ser hecho?" autofocus>
+            <section class="main">
+                <a>Prioridad</a>
+                <br>
+                <div id="prioridades">
+
+                    <input id="p1" type="radio" name="prioridad" value="1" checked>Normal
+                    <input id="p2" type="radio" name="prioridad" value="2">Media
+                    <input id="p3" type="radio" name="prioridad" value="3">Alta
+                </div>
+                <input class="new-todo" placeholder="Nueva Tarea" autofocus>
+            </section>
         </header>
         <!-- This section should be hidden by default and shown when there are todos -->
         <section class="main">
