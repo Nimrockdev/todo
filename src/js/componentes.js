@@ -14,13 +14,19 @@ var prioridades = document.getElementsByName('prioridad');
 
 export const crearTodoHTML = (todo) => {
 
+
+
     const htmlTodo =
         `<li class="${(todo.completado) ?  'completed': ''}"  data-id="${todo.id}">
             <div class="view">
                 <input class="toggle" type="checkbox" ${(todo.completado)? 'checked':'' }>
-                <label>${todo.tarea}</label>
+                <div>
+                <label style="COLOR:${dameColor(todo.prioridad)}">${todo.tarea}</label>
+        
+                </div>
+       
                 <button class="destroy"></button>
-            </div>
+               </div>
             <input class="edit" value="Create a TodoMVC template">
         </li>`;
 
@@ -30,6 +36,27 @@ export const crearTodoHTML = (todo) => {
     divTodoList.append(div.firstElementChild);
 
     return div.firstElementChild;
+
+}
+
+function dameColor(prioridad) {
+
+    console.log(prioridad)
+
+    switch (parseInt(prioridad)) {
+
+        case 1:
+            return '#4CAF50'
+
+            break;
+        case 2:
+            return '#fffb03'
+            break;
+        case 3:
+            return '#ff0000'
+            break;
+
+    }
 
 }
 
