@@ -8,25 +8,19 @@ const btnBorrar = document.querySelector('.clear-completed');
 const ulFiltros = document.querySelector('.filters');
 const Filtro = document.querySelectorAll('.filtro');
 var prioridades = document.getElementsByName('prioridad');
-
-
-
+const divpendientes = document.querySelector('.todo-count');
 
 export const crearTodoHTML = (todo) => {
-
-
 
     const htmlTodo =
         `<li class="${(todo.completado) ?  'completed': ''}"  data-id="${todo.id}">
             <div class="view">
                 <input class="toggle" type="checkbox" ${(todo.completado)? 'checked':'' }>
                 <div>
-                <label style="COLOR:${dameColor(todo.prioridad)}">${todo.tarea}</label>
-        
+                    <label style="COLOR:${dameColor(todo.prioridad)}">${todo.tarea}</label>
                 </div>
-       
-                <button class="destroy"></button>
-               </div>
+                    <button class="destroy"></button>           
+               </div>               
             <input class="edit" value="Create a TodoMVC template">
         </li>`;
 
@@ -39,6 +33,23 @@ export const crearTodoHTML = (todo) => {
 
 }
 
+
+export const crearPendientes = (todos) => {
+
+    divpendientes.innerHTML = '';
+
+    let todosPendientes = todos.filter(todo => todo.completado == false)
+
+    const htmlPendientes =
+        `<span class="todo-count"><strong>${todosPendientes.length}</strong> Pendientes</span>`;
+
+    const div = document.createElement('div');
+    div.innerHTML = htmlPendientes;
+    //Hacemos el apped del primer hijo del div, el li
+
+    divpendientes.append(div.firstElementChild);
+}
+
 function dameColor(prioridad) {
 
     console.log(prioridad)
@@ -46,11 +57,10 @@ function dameColor(prioridad) {
     switch (parseInt(prioridad)) {
 
         case 1:
-            return '#4CAF50'
-
+            return 'black'
             break;
         case 2:
-            return '#fffb03'
+            return 'blue'
             break;
         case 3:
             return '#ff0000'
@@ -60,13 +70,11 @@ function dameColor(prioridad) {
 
 }
 
-
 //Eventos
 
 txtInput.addEventListener('keyup', (event) => {
 
     if (event.keyCode === 13 && txtInput.value.length > 0) {
-
 
         let prioridad;
 
@@ -76,18 +84,11 @@ txtInput.addEventListener('keyup', (event) => {
             }
         }
 
-
-        console.log(txtInput.value);
-        console.log(prioridad)
-
         const nuevoTodo = new Todo(txtInput.value, prioridad);
         todoList.nuevoTodo(nuevoTodo);
-
-        console.log(todoList);
-
         crearTodoHTML(nuevoTodo);
         txtInput.value = '';
-
+        crearPendientes(todoList.todos)
     }
 
 
@@ -102,7 +103,6 @@ divTodoList.addEventListener('click', (event => {
     const nombreElemento = event.target.localName;
     const todoElemento = event.target.parentElement.parentElement;
     const todoID = todoElemento.getAttribute('data-id');
-    console.log(todoID);
 
     if (nombreElemento.includes('input')) {
         todoList.marcarFinalizado(todoID);
@@ -111,8 +111,8 @@ divTodoList.addEventListener('click', (event => {
         todoList.eliminarTodo(todoID);
         divTodoList.removeChild(todoElemento);
     }
+    crearPendientes(todoList.todos)
 
-    console.log(todoList);
 
 }));
 

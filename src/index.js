@@ -1,7 +1,7 @@
 import './styles.css';
 
 import { Todo, TodoList } from './classes';
-import { crearTodoHTML } from './js/componentes';
+import { crearTodoHTML, crearPendientes } from './js/componentes';
 
 
 export const todoList = new TodoList();
@@ -13,3 +13,13 @@ export const todoList = new TodoList();
 // crearTodoHTML(tarea);
 
 todoList.todos.forEach(todo => crearTodoHTML(todo));
+
+crearPendientes(todoList.todos);
+
+// let creaTODO = () => {
+//     return new Promise((resolve, reject) => {
+//         resolve(todoList.todos.forEach(todo => crearTodoHTML(todo)));
+//     })
+// }
+
+// creaTODO().then(() => crearPendientes(todoList.todos));
