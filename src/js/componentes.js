@@ -52,8 +52,6 @@ export const crearPendientes = (todos) => {
 
 function dameColor(prioridad) {
 
-    console.log(prioridad)
-
     switch (parseInt(prioridad)) {
 
         case 1:
@@ -130,7 +128,6 @@ btnBorrar.addEventListener('click', () => {
             divTodoList.removeChild(elemento);
         }
 
-
     }
 
 });
@@ -163,12 +160,7 @@ ulFiltros.addEventListener('click', (event) => {
                     elemento.classList.add('hidden');
                 }
                 break;
-
-
         }
-
-
     }
-
 
 })
